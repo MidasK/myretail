@@ -36,7 +36,6 @@ public class MyRetailMockMvcTests
 
     private ObjectMapper objectMapper;
 
-    //make this a constant to be used everywhere
     private static String PRODUCT_ID = "13860428";
 
     private static String BAD_PRODUCT_ID = "00011111";

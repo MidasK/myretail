@@ -10,7 +10,6 @@
 .settings
 .springBeans
 
-.gradle
 bin/
 .jar
 .class
