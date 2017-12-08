@@ -13,11 +13,8 @@ import com.myretail.web.exception.ResourceNotfoundException;
 @Component
 public class ProductDetailsClient
 {
-
     private static final String URL_SEPARATOR = "/";
     private static final String URL_QUERY_SEPARATOR = "?";
-
-    private RestTemplate restTemplate = new RestTemplate();
 
     @Value("${myretail.productdetail.url}")
     private String productDetailsUrl;
@@ -25,13 +22,14 @@ public class ProductDetailsClient
     @Value("${myretail.productdetail.url.querystring}")
     private String productDetailsUrlQueryString;
 
+    private RestTemplate restTemplate = new RestTemplate();
+
     public String getProductTitle(final String productId)
     {
         JSONObject json;
         String title = "";
         String responseJSON;
         String url = buildUrl(productId, productDetailsUrl);
-
         try
         {
             responseJSON = restTemplate.getForObject(url, String.class);
@@ -40,7 +38,6 @@ public class ProductDetailsClient
         {
             throw new ResourceNotfoundException(rce.getMessage());
         }
-
         try
         {
             json = new JSONObject(responseJSON);

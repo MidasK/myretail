@@ -52,6 +52,7 @@ public class ProductInfoController
      */
     @RequestMapping(value = "/productInfo/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
     public String updateProductInformation(@RequestBody final ProductInfoDTO productInfoDTO)
     {
         CurrentPrice currentPrice = new CurrentPrice(productInfoDTO.getCurrentPrice().getValue(), productInfoDTO.getCurrentPrice().getCurrencyCode());
