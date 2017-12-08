@@ -1,0 +1,49 @@
+buildscript {
+	repositories {
+		jcenter()
+		maven { url 'https://plugins.gradle.org/m2/' }
+	}
+	dependencies {
+	 classpath "io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE"
+     classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.0"
+     classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.4.RELEASE"
+     classpath "com.netflix.nebula:gradle-ospackage-plugin:2.2.6" 
+     classpath 'gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.17'
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+configure(rootProject) {
+  task wrapper(type: Wrapper) {
+    description = 'Download the gradle wrapper and requisite files. Overwrites existing wrapper.'
+    gradleVersion = '3.5'
+  }
+}
+
+group = 'com.myretail'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	jcenter()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile "org.springframework.integration:spring-integration-core"
+    compile ('org.springframework.boot:spring-boot-starter-web') { exclude module: "spring-boot-starter-tomcat" }
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
+    compile 'org.springframework:spring-web'
+    compile 'org.json:json'
+}
+
+springBoot {
+    buildInfo() 
+    mainClass = "com.myretail.product.MyRetailApplication"
+    executable = true
+  }
