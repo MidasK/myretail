@@ -16,16 +16,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ProductInfoController
 {
 
-    //TODO : try adding logger, output to a log file somewhere in server, that you can see
-
     @Autowired
     public ProductInfoService productInfoService;
 
-    //TODO : make URL better
     /*
-     * MyRetail.Product.GetProductInformation
-     * This endpoint
+     * Aggregates product data for a product from multiple sources and returns it as JSON to the caller
      *
+     * @param id : the id of the product.
      */
     @RequestMapping(value = "/productInfo/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
@@ -38,7 +35,6 @@ public class ProductInfoController
         return productInfoDTO;
     }
 
-    //TODO : make URL better
     @RequestMapping(value = "/productInfo", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public String createProductInformation(@RequestBody final ProductInfoDTO productInfoDTO)
@@ -50,8 +46,9 @@ public class ProductInfoController
     }
 
     /*
+     * takes a JSON request body as input, and updates the product’s price in the data store.
      *
-     *
+     * @param id : the id of the product you want to update.
      */
     @RequestMapping(value = "/productInfo/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)

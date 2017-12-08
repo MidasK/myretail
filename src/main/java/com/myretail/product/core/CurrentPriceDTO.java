@@ -11,7 +11,6 @@ public class CurrentPriceDTO
     @JsonProperty
     private BigDecimal value;
 
-    //TODO IF POSSIBLE : convert currency_code to currencyCode, while using some annotation to keep "currency_code" in JSON somehow.
     @JsonProperty("currency_code")
     private String currencyCode;
 

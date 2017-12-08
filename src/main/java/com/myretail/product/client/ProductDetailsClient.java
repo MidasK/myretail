@@ -15,7 +15,6 @@ public class ProductDetailsClient
 {
 
     private static final String URL_SEPARATOR = "/";
-
     private static final String URL_QUERY_SEPARATOR = "?";
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -31,7 +30,6 @@ public class ProductDetailsClient
         JSONObject json;
         String title = "";
         String responseJSON;
-
         String url = buildUrl(productId, productDetailsUrl);
 
         try
@@ -59,8 +57,6 @@ public class ProductDetailsClient
     private String buildUrl(final String productId, final String productDetailsUrl)
     {
         String url = productDetailsUrl + URL_SEPARATOR + productId + URL_QUERY_SEPARATOR + productDetailsUrlQueryString;
-
         return url;
     }
-
 }

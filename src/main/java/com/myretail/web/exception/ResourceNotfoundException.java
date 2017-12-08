@@ -19,9 +19,4 @@ public class ResourceNotfoundException extends RuntimeException
         super(message);
     }
 
-    public ResourceNotfoundException(final String message, final Throwable cause)
-    {
-        super(message, cause);
-    }
-
 }

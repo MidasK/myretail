@@ -17,7 +17,6 @@ public class ProductInfoDTO
 
     public ProductInfoDTO()
     {
-
     }
 
     public ProductInfoDTO(final ProductInfo productInfo)
@@ -25,7 +24,6 @@ public class ProductInfoDTO
         this.id = productInfo.getId();
         this.name = productInfo.getName();
         this.currentPrice = new CurrentPriceDTO(productInfo.getCurrentPrice());
-
     }
 
     public long getId()

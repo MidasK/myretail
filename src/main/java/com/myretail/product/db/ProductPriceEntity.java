@@ -63,5 +63,4 @@ public class ProductPriceEntity
         this.value = currentPrice.getValue().toString();
         this.currencyCode = currentPrice.getCurrencyCode();
     }
-
 }

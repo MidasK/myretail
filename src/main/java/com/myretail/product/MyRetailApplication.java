@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.myretail")
 public class MyRetailApplication
 {
-
     public static void main(final String[] args)
     {
         SpringApplication.run(MyRetailApplication.class, args);

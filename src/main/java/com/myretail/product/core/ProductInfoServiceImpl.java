@@ -48,7 +48,6 @@ public class ProductInfoServiceImpl implements ProductInfoService
         currentPrice.setValue(new BigDecimal(productPricefromDB.getValue()));
 
         return currentPrice;
-
     }
 
     @Override
@@ -56,7 +55,6 @@ public class ProductInfoServiceImpl implements ProductInfoService
     {
         ProductPriceEntity pProductPriceEntity = new ProductPriceEntity(currentPrice, String.valueOf(productInfo));
         productPriceRepository.insert(pProductPriceEntity);
-
     }
 
     @Override
@@ -64,6 +62,5 @@ public class ProductInfoServiceImpl implements ProductInfoService
     {
         ProductPriceEntity pProductPriceEntity = new ProductPriceEntity(currentPrice, String.valueOf(productInfo));
         productPriceRepository.save(pProductPriceEntity);
-
     }
 }

@@ -1,7 +1,7 @@
 ## MyRetail Products App
 myretail is an API for myRetail company's Product line.
-Get API aggregates product data from multiple sources and returns it as JSON to the caller.
-Put API takes a JSON request body as input, and updates the product’s price in the data store.
+-Get API aggregates product data from multiple sources and returns it as JSON to the caller.
+-Put API takes a JSON request body as input, and updates the product’s price in the data store.
 
 ## Dependencies
 All dependencies are mentioned in build.gradle file. This can be run to download all dependencies required by the app. 
@@ -10,7 +10,7 @@ All dependencies are mentioned in build.gradle file. This can be run to download
 Run MockMVC tests, Controller tests, and other Unit tests. 
 
 ## For App testing
-All endpoints can be tested via a RestClient like PostMan. 
+Once the app is deployed in a server like tomcat or inbuilt SpringBoot jetty and started, All endpoints can be tested via a RestClient like PostMan. 
 
 ## For running
 - MongoDB : MongoDB should be running on either local machine or another server. Following parameters need to be provided in application.properties (sample from local implementation) :
@@ -32,3 +32,8 @@ Please execute the script 'MongoDBSetup' provided in dbscripts folder as a prere
 - User Authentication & Authorization
 - Endpoints for inserting data 
 - Release cycle and notes
+
+## Environment info
+- Gradle 
+- Spring Boot
+- MongoDB
