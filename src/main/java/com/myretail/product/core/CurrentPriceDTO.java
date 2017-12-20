@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CurrentPriceDTO
 {
 
-    @JsonProperty
+    @JsonProperty("value")
     private BigDecimal value;
 
     @JsonProperty("currency_code")

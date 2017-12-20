@@ -29,31 +29,29 @@ public class ProductDetailsClient
         JSONObject json;
         String title = "";
         String responseJSON;
-        String url = buildUrl(productId, productDetailsUrl);
+        String url = buildUrl(productId, productDetailsUrl, productDetailsUrlQueryString);
         try
         {
             responseJSON = restTemplate.getForObject(url, String.class);
+            json = new JSONObject(responseJSON);
+            title = json.getJSONObject("product").getJSONObject("item").getJSONObject("product_description").getString("title");
+
         }
         catch (RestClientException rce)
         {
             throw new ResourceNotfoundException(rce.getMessage());
         }
-        try
+        catch (JSONException jsone)
         {
-            json = new JSONObject(responseJSON);
-            title = json.getJSONObject("product").getJSONObject("item").getJSONObject("product_description").getString("title");
-        }
-        catch (JSONException e)
-        {
-            throw new JSONException(e.getMessage());
+            throw new JSONException(jsone.getMessage());
         }
 
         return title;
     }
 
-    private String buildUrl(final String productId, final String productDetailsUrl)
+    private String buildUrl(final String productId, final String productDetailsUrl, final String productDetailsQueryString)
     {
-        String url = productDetailsUrl + URL_SEPARATOR + productId + URL_QUERY_SEPARATOR + productDetailsUrlQueryString;
+        String url = productDetailsUrl + URL_SEPARATOR + productId + URL_QUERY_SEPARATOR + productDetailsQueryString;
         return url;
     }
 }

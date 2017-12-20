@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import java.math.BigDecimal;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.myretail.product.db.ProductPriceRepository;
+import com.myretail.web.exception.ResourceNotfoundException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -24,6 +26,12 @@ public class ProductInfoControllerTests
 
     @Autowired
     ProductPriceRepository productPriceRepository;
+
+    @Before
+    public void setup()
+    {
+        productPriceRepository.deleteAll();
+    }
 
     @Test
     public void testCreateProduct() throws InterruptedException
@@ -58,6 +66,14 @@ public class ProductInfoControllerTests
         assertEquals(productInfoDTOCreated.getId(), productInfoDTORetrieved.getId());
         assertEquals(productInfoDTOCreated.getCurrentPrice().getCurrencyCode(), productInfoDTORetrieved.getCurrentPrice().getCurrencyCode());
 
+    }
+
+    @Test(expected=ResourceNotfoundException.class)
+    public void testGetProduct_NOT_FOUND() throws InterruptedException
+    {
+        long productId = -00000000l;
+
+        ProductInfoDTO productInfoDTORetrieved = productInfoController.getProductInformation(productId);
     }
 
     @Test

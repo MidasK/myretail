@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
-@RequestMapping(value = "/products")
+@RequestMapping(value = "/productInfo")
 public class ProductInfoController
 {
 
@@ -24,19 +24,22 @@ public class ProductInfoController
      *
      * @param id : the id of the product.
      */
-    @RequestMapping(value = "/productInfo/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public ProductInfoDTO getProductInformation(@PathVariable final long id)
     {
-        ProductInfo productInfo = productInfoService.retrieveProductInfo(id);
+        ProductInfo productInfo;
+        productInfo = productInfoService.retrieveProductInfo(id);
+
         ProductInfoDTO productInfoDTO = new ProductInfoDTO(productInfo);
 
         return productInfoDTO;
     }
 
-    @RequestMapping(value = "/productInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/products", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
     public String createProductInformation(@RequestBody final ProductInfoDTO productInfoDTO)
     {
         CurrentPrice currentPrice = new CurrentPrice(productInfoDTO.getCurrentPrice().getValue(), productInfoDTO.getCurrentPrice().getCurrencyCode());
@@ -50,8 +53,8 @@ public class ProductInfoController
      *
      * @param id : the id of the product you want to update.
      */
-    @RequestMapping(value = "/productInfo/{id}", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @ResponseBody
     public String updateProductInformation(@RequestBody final ProductInfoDTO productInfoDTO)
     {

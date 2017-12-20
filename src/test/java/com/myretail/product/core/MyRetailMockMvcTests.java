@@ -59,14 +59,14 @@ public class MyRetailMockMvcTests
 
         String createProductInfoJson = toJson(dto);
         MvcResult result = this.mvc
-            .perform(post("/products/productInfo")
+            .perform(post("/productInfo/products")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(createProductInfoJson))
             .andDo(print())
             .andExpect(status().isCreated())
             .andReturn();
 
-        long id = Long.parseLong(result.getResponse().getForwardedUrl());
+        long id = Long.parseLong(result.getResponse().getContentAsString());
         assertEquals(id, dto.getId());
 
         productPriceRepository.deleteAll();
@@ -79,13 +79,13 @@ public class MyRetailMockMvcTests
         insertProductPriceDummyRecord();
 
         MvcResult result = this.mvc
-            .perform(get("/products/productInfo/{id}", PRODUCT_ID))
+            .perform(get("/productInfo/products/{id}", PRODUCT_ID))
                      .andDo(print())
                      .andExpect(status().isOk())
                      .andReturn();
 
         MvcResult badResult = this.mvc
-            .perform(get("/products/productInfo/{id}", BAD_PRODUCT_ID))
+            .perform(get("/productInfo/products/{id}", BAD_PRODUCT_ID))
                      .andDo(print())
                      .andExpect(status().isNotFound())
                      .andReturn();
@@ -122,7 +122,7 @@ public class MyRetailMockMvcTests
 
     }
 
-    public String toJson(final Object obj)
+    private String toJson(final Object obj)
     {
         assertNotNull(obj);
 
