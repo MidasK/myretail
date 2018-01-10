@@ -1,7 +1,7 @@
 ## MyRetail Products App
 myretail is an API for myRetail company's Product line.
--Get API aggregates product data from multiple sources and returns it as JSON to the caller.
--Put API takes a JSON request body as input, and updates the product’s price in the data store.
+Get API aggregates product data from multiple sources and returns it as JSON to the caller.
+Put API takes a JSON request body as input, and updates the productâ€™s price in the data store.
 
 ## Dependencies
 All dependencies are mentioned in build.gradle file. This can be run to download all dependencies required by the app. 
